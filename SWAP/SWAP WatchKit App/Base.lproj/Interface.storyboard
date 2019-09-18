@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--alarmSegue-->
+        <scene sceneID="Cas-jj-Qs8">
+            <objects>
+                <controller identifier="alarmSegue" id="ed1-1z-vSf">
+                    <items>
+                        <label width="136" alignment="left" text="Alarm" textAlignment="center" id="A8g-0y-kNu"/>
+                        <separator alignment="left" id="3uf-UP-xvN"/>
+                        <dateLabel width="136" height="68" alignment="center" textAlignment="center" id="VBc-YF-jDV">
+                            <dateFormatterStyle key="timeStyle" medium="YES"/>
+                        </dateLabel>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-94" y="347"/>
+        </scene>
+        <!--mainSegue-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="mainSegue" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SWAP_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <button width="1" alignment="left" title="New Alarm" id="2QD-eW-twB">
+                            <connections>
+                                <segue destination="Sb1-ke-T1l" kind="push" id="gO2-58-Kmo"/>
+                            </connections>
+                        </button>
+                        <separator alignment="left" id="Xsq-yR-1k6"/>
+                        <label width="136" height="33" alignment="center" verticalAlignment="center" textAlignment="center" id="lcm-AF-EmO">
+                            <fontDescription key="font" type="italicSystem" weight="thin" pointSize="22"/>
+                        </label>
+                        <separator alignment="left" verticalAlignment="bottom" id="U6X-AQ-hLT"/>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="View Alarms" id="Ae6-ua-QC5"/>
+                    </items>
+                    <connections>
+                        <outlet property="timerLabel" destination="lcm-AF-EmO" id="Tl2-KG-LBa"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Add Alarm Interface Controller-->
+        <scene sceneID="IgM-kk-tTL">
+            <objects>
+                <controller id="Sb1-ke-T1l" customClass="AddAlarmInterfaceController" customModule="SWAP_WatchKit_Extension">
+                    <items>
+                        <label width="136" alignment="center" text="New Alarm" textAlignment="center" id="QWb-sO-zpu"/>
+                        <separator alignment="left" id="r9e-Cs-Fb3"/>
+                        <group width="1" height="73" alignment="left" id="LBA-26-8lY">
+                            <items>
+                                <picker width="45" height="1" alignment="left" focusStyle="sequence" id="n9d-6z-DYg" userLabel="HourPicker">
+                                    <connections>
+                                        <action selector="hourPickerSelected:" destination="Sb1-ke-T1l" id="pbf-ai-Ie3"/>
+                                    </connections>
+                                </picker>
+                                <picker width="45" height="1" alignment="left" focusStyle="sequence" id="ahe-G4-1fd" userLabel="MinutePicker">
+                                    <connections>
+                                        <action selector="minutePickerSelected:" destination="Sb1-ke-T1l" id="bEP-Qv-oio"/>
+                                    </connections>
+                                </picker>
+                                <picker width="41" height="1" alignment="left" focusStyle="sequence" id="Vss-Pn-aEn" userLabel="DayTimePicker">
+                                    <connections>
+                                        <action selector="dayTimePickerSelected:" destination="Sb1-ke-T1l" id="y5I-cs-wO9"/>
+                                    </connections>
+                                </picker>
+                            </items>
+                        </group>
+                        <separator alignment="left" id="LXR-1S-7hD"/>
+                        <button width="1" alignment="left" title="Set Minutes" id="42U-l2-S8n">
+                            <connections>
+                                <action selector="setNewAlarm" destination="Sb1-ke-T1l" id="TfW-qi-pnC"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="dayTimePicker" destination="Vss-Pn-aEn" id="Su5-7p-b2P"/>
+                        <outlet property="timeHourPicker" destination="n9d-6z-DYg" id="B0V-ht-c0d"/>
+                        <outlet property="timeMinutePicker" destination="ahe-G4-1fd" id="h2P-Jf-fhx"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="497" y="347"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="SWAP_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>
